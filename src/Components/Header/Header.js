@@ -2,7 +2,6 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Link } from 'react-router-dom';
 import { RiComputerLine } from "react-icons/ri";
 import'./Header.css'
@@ -22,10 +21,9 @@ const Header = () => {
         </div>
           </Nav>
           <Nav>
-            <Nav.Link href="#deets">Log in</Nav.Link>
-            <Nav.Link eventKey={2} href="#memes">
-              Sing up
-            </Nav.Link>
+            <Link to='/login'>Log In</Link>
+            <Link to='/singup'>Sing up</Link>
+              
           </Nav>
         
       </Container>
