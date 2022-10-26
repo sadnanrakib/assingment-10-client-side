@@ -4,6 +4,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
 import { RiComputerLine,RiToggleLine } from "react-icons/ri";
+import { ImSwitch } from "react-icons/im";
 import'./Header.css'
 import { AuthContext } from '../../Context/AuthProvider';
 import LiftSideNav from '../LiftSideNav/LiftSideNav';
@@ -28,7 +29,7 @@ const Header = () => {
                 <Link to='/blog'>Blog</Link>
                 <Link to='/faq'>FAQ</Link>
                 <Link className='btn' onClick={()=>toggole()}>
-                  <RiToggleLine></RiToggleLine>
+                 <ImSwitch></ImSwitch>
                   </Link>
         </div>
           </Nav>
