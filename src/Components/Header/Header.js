@@ -7,6 +7,7 @@ import { RiComputerLine,RiToggleLine } from "react-icons/ri";
 import'./Header.css'
 import { AuthContext } from '../../Context/AuthProvider';
 import LiftSideNav from '../LiftSideNav/LiftSideNav';
+import { Button } from 'react-bootstrap';
 
 const Header = () => {
   const toggole=()=>{

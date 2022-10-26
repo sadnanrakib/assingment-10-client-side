@@ -1,0 +1,19 @@
+.link-btn a{
+  text-decoration: none;
+padding: 5px 15px;
+border-radius: 5px;
+background-color: rgb(26, 26, 237);
+margin-bottom: 10px;
+gap: 10px;
+color: white;
+}
+.link-btn{
+    border: 1px solid gray;
+    margin-top: 20px;
+    padding: 20px;
+}
+
+.link-btn a:hover{
+    background-color: cornflowerblue;
+    color: aliceblue;
+}

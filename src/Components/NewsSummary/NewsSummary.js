@@ -9,7 +9,7 @@ const NewsSummary = ({news}) => {
     console.log(news);
     return (
         <Card className="mb-5">
-            <Card.Header className='d-flex justify-content-between align-items-center'>
+            {/* <Card.Header className='d-flex justify-content-between align-items-center'>
                 <div className='d-flex'>
                     <Image
                         roundedCircle
@@ -26,16 +26,16 @@ const NewsSummary = ({news}) => {
                     <FaRegBookmark className='me-2'></FaRegBookmark>
                     <FaShareAlt></FaShareAlt>
                 </div>
-            </Card.Header>
+            </Card.Header> */}
             <Card.Body>
                 <Card.Title>{title}</Card.Title>
-                <Card.Img variant="top" src={image_url} />
+                <Card.Img  variant="top" src={image_url} />
                 <Card.Text>
+                <p>{details}</p>
                     {
-                        details.length > 250 ?
-                            <p>{details.slice(0, 250) + '...'} <Link to={`/news/${_id}`}>Read More</Link> </p>
-                            :
-                            <p>{details}</p>
+                        <Link to={`/news/${_id}`}>Read More</Link> 
+                            
+                            
                     }
                 </Card.Text>
             </Card.Body>

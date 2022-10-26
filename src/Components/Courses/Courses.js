@@ -13,16 +13,17 @@ const Courses = () => {
       <Container className="disply ">
         <div>
           <Row>
-            <Col lg="2">
+            <Col>
               <LiftSideNav></LiftSideNav>
             </Col>
           </Row>
         </div>
         <div>
           <Row>
-            <Col lg="10">
-              <div>
-                <h2>Dragon News Home: {allNews.length}</h2>
+            <Col>
+            <h2>Dragon News Home: {allNews.length}</h2>
+              <div className="flex">
+                
                 {allNews.map((news) => (
                   <NewsSummary key={news._id} news={news}></NewsSummary>
                 ))}

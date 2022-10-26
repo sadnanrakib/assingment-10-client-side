@@ -5,7 +5,7 @@ import { Link, useLoaderData } from 'react-router-dom';
 const News = () => {
     const news = useLoaderData();
     console.log(news);
-    const { title, details, image_url, category_id } = news;
+    const { _id, title, author, details, image_url, rating, total_view,category_id  } = news;
     return (
         
           <Card>
@@ -16,7 +16,7 @@ const News = () => {
                     {details}
                 </Card.Text>
                 <Link to={`/category/${category_id}`}>
-                    <Button variant="primary">All news in this category</Button>
+                    <Button variant="primary" className=''><Link to={`/news/${category_id}`}>Go SomeWhere</Link></Button>
                 </Link>
             </Card.Body>
         </Card>

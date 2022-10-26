@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Courses from '../Courses/Courses';
+import'./LiftSideNav.css';
 
 const LiftSideNav = () => {
     const [categories,setCategories]=useState([])
@@ -11,11 +12,13 @@ const LiftSideNav = () => {
       .then(data=>setCategories(data))
     },[])
     return (
-        <div>
-             <h6>All Categories:{categories.length}</h6>
+        <div className='mb-2'>
+            <h6>All Categories:{categories.length}</h6>
+        <div className='link-btn'>
+             
 
             {
-                categories.map(category=> <p 
+                categories.map(category=> <p
                     
                     key={category.id}
                     
@@ -23,6 +26,7 @@ const LiftSideNav = () => {
                     ><Link to={`/category/${category.id}`}>{category.name}</Link>
                     </p>)
             }
+        </div>
         </div>
     );
 };
