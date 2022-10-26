@@ -12,7 +12,7 @@ const LiftSideNav = () => {
     },[])
     return (
         <div>
-            <h4>All Category</h4>
+             <h6>All Categories:{categories.length}</h6>
 
             {
                 categories.map(category=> <p 

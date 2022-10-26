@@ -3,11 +3,15 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
-import { RiComputerLine } from "react-icons/ri";
+import { RiComputerLine,RiToggleLine } from "react-icons/ri";
 import'./Header.css'
 import { AuthContext } from '../../Context/AuthProvider';
+import LiftSideNav from '../LiftSideNav/LiftSideNav';
 
 const Header = () => {
+  const toggole=()=>{
+    alert('hi');
+  }
   const {user}= useContext(AuthContext)
     return (
         <div>
@@ -22,6 +26,9 @@ const Header = () => {
                 <Link to='/courses'>Courses</Link>
                 <Link to='/blog'>Blog</Link>
                 <Link to='/faq'>FAQ</Link>
+                <Link className='btn' onClick={()=>toggole()}>
+                  <RiToggleLine></RiToggleLine>
+                  </Link>
         </div>
           </Nav>
           <Nav>
@@ -33,7 +40,9 @@ const Header = () => {
           </Nav>
         
       </Container>
+      
     </Navbar>
+    {/* <LiftSideNav></LiftSideNav> */}
         </div>
     );
 };

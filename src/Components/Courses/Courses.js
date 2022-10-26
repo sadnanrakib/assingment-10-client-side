@@ -1,27 +1,38 @@
-import React from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
-import { useLoaderData } from 'react-router-dom';
-import LiftSideNav from '../LiftSideNav/LiftSideNav';
+import React from "react";
+import { Col, Container, Row } from "react-bootstrap";
+import { useLoaderData } from "react-router-dom";
+import Category from "../Category/Category";
+import LiftSideNav from "../LiftSideNav/LiftSideNav";
+import NewsSummary from "../NewsSummary/NewsSummary";
+import './Courses.css'
 
 const Courses = () => {
-    
-    return (
+  const allNews = useLoaderData();
+  return (
+    <div className="mt-4">
+      <Container className="disply ">
         <div>
-            <Container>
-              <Row>
-                <Col lg="2">
-                  <LiftSideNav></LiftSideNav>
-                </Col>
-              </Row>
-              <Row>
-                <Col lg="10">
-                <h1>This is Courese</h1>
-                </Col>
-              </Row>
-            
-            </Container>
+          <Row>
+            <Col lg="2">
+              <LiftSideNav></LiftSideNav>
+            </Col>
+          </Row>
         </div>
-    );
+        <div>
+          <Row>
+            <Col lg="10">
+              <div>
+                <h2>Dragon News Home: {allNews.length}</h2>
+                {allNews.map((news) => (
+                  <NewsSummary key={news._id} news={news}></NewsSummary>
+                ))}
+              </div>
+            </Col>
+          </Row>
+        </div>
+      </Container>
+    </div>
+  );
 };
 
 export default Courses;
