@@ -5,16 +5,26 @@ import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
 import { RiComputerLine,RiToggleLine } from "react-icons/ri";
 import { ImSwitch } from "react-icons/im";
+import { FaUser } from 'react-icons/fa';
 import'./Header.css'
 import { AuthContext } from '../../Context/AuthProvider';
 import LiftSideNav from '../LiftSideNav/LiftSideNav';
-import { Button } from 'react-bootstrap';
+import { Button, Image } from 'react-bootstrap';
 
 const Header = () => {
-  const toggole=()=>{
-    alert('hi');
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogOut = () => {
+      logOut()
+          .then(() => { })
+          .catch(error => console.error(error))
   }
-  const {user}= useContext(AuthContext)
+
+  // const toggole=()=>{
+  //   alert('hi');
+  // }
+  
+
     return (
         <div>
         <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
@@ -28,17 +38,38 @@ const Header = () => {
                 <Link to='/courses'>Courses</Link>
                 <Link to='/blog'>Blog</Link>
                 <Link to='/faq'>FAQ</Link>
-                <Link className='btn' onClick={()=>toggole()}>
+                {/* <Link className='btn' onClick={()=>toggole()}>
                  <ImSwitch></ImSwitch>
-                  </Link>
+                  </Link> */}
         </div>
           </Nav>
           <Nav>
-            <div className='logandsing'>
-            <Link to='/login'>{user?.displayName
-}</Link>
-            <Link to='/singup'>Sing up</Link>
-            </div>
+              <>
+                            {
+                                user?.uid ?
+                                    <>
+                                        <span>{user?.displayName}</span>
+                                        <Button variant="light" onClick={handleLogOut}>Log out</Button>
+                                    </>
+                                    :
+                                    <>
+                                        <Link to='/login'>Login</Link>
+                                        <Link to='/register'>Register</Link>
+                                    </>
+                            }
+
+
+                        </>
+                        <Link to="/">
+                            {user?.photoURL ?
+                                <Image
+                                    style={{ height: '30px' }}
+                                    roundedCircle
+                                    src={user?.photoURL}>
+                                </Image>
+                                : <FaUser></FaUser>
+                            }
+                        </Link>
               
           </Nav>
         

@@ -1,58 +1,92 @@
 import React, { useContext, useState } from 'react';
+import { Button, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { AuthContext } from '../../Context/AuthProvider';
 
 const SingUp = () => {
-    const [error,setError]=useState(null);
-const {createUser} = useContext(AuthContext)
-    const handleSubmit=(event)=>{
-        event.preventDefault();
-       const form = event.target;
-       const email = form.email.value;
-       const password = form.password.value;
-       const confirm = form.confirm.value;
-       console.log(email,password,confirm);
-        if(password.length < 6){
-            setError("Password must be at least 6 characters long");
-            return;
-        }
-       if(password!==confirm){
-            setError('Your password Not Match ')
-            return;
-       }
-       createUser(email,password)
-       .then (result=>{
-        const user = result.user;
-        console.log(user);
-        form.reset();
-       })
-       .catch(error=>console.error(error))
-       
+    const [error, setError] = useState('');
+    const [accepted, setAccepted] = useState(false);
+    const { createUser, updateUserProfile, verifyEmail } = useContext(AuthContext);
 
+    const handleSubmit = event => {
+        event.preventDefault();
+        const form = event.target;
+        const name = form.name.value;
+        const photoURL = form.photoURL.value;
+        const email = form.email.value;
+        const password = form.password.value;
+        // console.log(name, photoURL, email, password);
+
+        createUser(email, password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                setError('');
+                form.reset();
+                handleUpdateUserProfile(name, photoURL);
+                handleEmailVerification();
+                toast.success('Please verify your email address.')
+            })
+            .catch(e => {
+                console.error(e);
+                setError(e.message);
+            });
+    }
+
+    const handleUpdateUserProfile = (name, photoURL) => {
+        const profile = {
+            displayName: name,
+            photoURL: photoURL
+        }
+
+        updateUserProfile(profile)
+            .then(() => { })
+            .catch(error => console.error(error));
+    }
+
+    const handleEmailVerification  = () => {
+        verifyEmail()
+        .then(() =>{})
+        .catch(error => console.error(error));
+    }
+
+    const handleAccepted = event => {
+        setAccepted(event.target.checked)
     }
     return (
-        <div>
-              <div className='form-container'>
-            <h2 className='from-title'>Sing Up</h2>
-            <form onSubmit={handleSubmit}>
-                <div className="form-contorl">
-                    <label htmlFor="email">Email</label>
-                    <input type="email" name="email" id="" required/>
-                </div>
-                <div className="form-contorl">
-                    <label htmlFor="password">Password</label>
-                    <input type="password" name="password" id="" required/>
-                </div>
-                <div className="form-contorl">
-                    <label htmlFor="confirm password">Confrim Password</label>
-                    <input type="password" name="confirm" id="" required/>
-                </div>
-                <input className='btn-submit' type="submit" value="Sing Up" />
-            </form>
-            <p>Already Have an Account <Link to='/login'>Login</Link> </p>
-            <p className='text-error'>{error}</p>
-        </div>
-        </div>
+        <Form onSubmit={handleSubmit}>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>Your Name</Form.Label>
+            <Form.Control name="name" type="text" placeholder="Your Name" />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>Photo URL</Form.Label>
+            <Form.Control name="photoURL" type="text" placeholder="Phot URL" />
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>Email address</Form.Label>
+            <Form.Control name="email" type="email" placeholder="Enter email" required />
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control name="password" type="password" placeholder="Password" required />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicCheckbox">
+            <Form.Check
+                type="checkbox"
+                onClick={handleAccepted}
+                label={<>Accept <Link to="/terms">Terms and conditions</Link></>} />
+        </Form.Group>
+        <Button variant="primary" type="submit" disabled={!accepted}>
+            Register
+        </Button>
+        <Form.Text className="text-danger">
+            {error}
+        </Form.Text>
+    </Form>
     );
 };
 

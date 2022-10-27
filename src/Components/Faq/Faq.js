@@ -6,7 +6,7 @@ const Faq = () => {
     
     return (
         <div>
-           <h2>FAQ is is a</h2> 
+           <h2>FAQ is i a</h2> 
         </div>
     );
 };
