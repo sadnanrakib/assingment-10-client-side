@@ -11,8 +11,10 @@ const Category = () => {
       <div className="category">
         <img src={news?.[0]?.image_url} alt="" />
         <h2>Name:{news?.[0]?.author.name}</h2>
+        <p>{news?.[0]?.details}</p>
         <Link to="/shipping">
           <Button>Check Out</Button>
+          
         </Link>
       </div>
     </div>

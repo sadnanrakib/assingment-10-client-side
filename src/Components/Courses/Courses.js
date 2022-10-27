@@ -21,7 +21,7 @@ const Courses = () => {
         <div>
           <Row>
             <Col>
-            <h2>Dragon News Home: {allNews.length}</h2>
+            <h2>All Courses</h2>
               <div className="flex">
                 
                 {allNews.map((news) => (
