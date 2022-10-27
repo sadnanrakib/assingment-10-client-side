@@ -35,7 +35,8 @@ const Header = () => {
           </Nav>
           <Nav>
             <div className='logandsing'>
-            <Link to='/login'>Log In</Link>
+            <Link to='/login'>{user?.displayName
+}</Link>
             <Link to='/singup'>Sing up</Link>
             </div>
               

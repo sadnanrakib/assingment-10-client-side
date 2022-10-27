@@ -1,27 +1,32 @@
-import React from 'react';
-import { Button, Card } from 'react-bootstrap';
-import { Link, useLoaderData } from 'react-router-dom';
+import React from "react";
+import { Button, Card } from "react-bootstrap";
+import { Link, useLoaderData } from "react-router-dom";
+import "./News.css";
 
 const News = () => {
-    const news = useLoaderData();
-    console.log(news);
-    const { _id, title, author, details, image_url, rating, total_view,category_id  } = news;
-    return (
+  const news = useLoaderData();
+  console.log(news);
+  const { _id, title, details, image_url, category_id } = news;
+  return (
+    <Card className="card-btn">
+     <div>
+     <Card.Img
+        variant="top"
         
-          <Card>
-            <Card.Img variant="top" src={image_url} />
-            <Card.Body>
-                <Card.Title>{title}</Card.Title>
-                <Card.Text>
-                    {details}
-                </Card.Text>
-                <Link to={`/category/${category_id}`}>
-                    <Button variant="primary" className=''><Link to={`/news/${category_id}`}>Go SomeWhere</Link></Button>
-                </Link>
-            </Card.Body>
-        </Card>
-       
-    );
+        src={image_url}
+      />
+     </div>
+    <div>
+    <Card.Body className="card-body">
+        <Card.Title>{title}</Card.Title>
+        <Card.Text>{details}</Card.Text>
+        <Link to="/shipping">
+          <Button>Check Out</Button>
+        </Link>
+      </Card.Body>
+    </div>
+    </Card>
+  );
 };
 
 export default News;

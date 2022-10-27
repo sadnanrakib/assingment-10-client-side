@@ -6,6 +6,8 @@ import Faq from "../Components/Faq/Faq";
 import Home from "../Components/Home/Home";
 import Login from "../Components/Login/Login";
 import News from "../Components/News/News";
+import PrivetRoute from "../Components/PrivetRoute/PrivetRoute";
+import Shipping from "../Components/Shipping/Shipping";
 import SingUp from "../Components/Sing up/SingUp";
 import Main from "../layouts/Main";
 
@@ -49,6 +51,10 @@ export const routes = createBrowserRouter([
             {
                 path:'/singup',
                 element:<SingUp></SingUp>
+            },
+            {
+                path:'/shipping',
+                element:<PrivetRoute><Shipping></Shipping></PrivetRoute>
             }
         ]
     }
